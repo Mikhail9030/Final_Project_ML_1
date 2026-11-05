@@ -1,0 +1,32 @@
+# Виртуальное окружение Python
+.venv/
+venv/
+ENV/
+env/
+
+# Кэш Python и Jupyter
+__pycache__/
+*.py[cod]
+*$py.class
+.ipynb_checkpoints/
+
+# MLflow артефакты и кэш артефактов
+mlruns/
+mlflow.db
+.mlflow/
+
+# Датасеты и локальные данные
+it-service-ticket-classification-dataset/
+*.csv
+*.json
+*.parquet
+
+# Файлы IDE и редакторов (PyCharm, VS Code)
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Операционная система
+.DS_Store
+Thumbs.db
