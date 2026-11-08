@@ -1,12 +1,12 @@
 # IT Service Ticket Classification
 
-[![GitVerse](https://img.shields.io/badge/GitVerse-gulaevmihail112-blue)](https://gitverse.ru/gulaevmihail112)
+[![GitHub](https://img.shields.io/badge/GitHub-Mikhail9030-blue?logo=github)](https://github.com/Mikhail9030/Final_Project_ML_1)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-brightgreen)](https://www.python.org/)
 [![MLflow](https://img.shields.io/badge/MLflow-Tracking-blueviolet)](https://mlflow.org/)
 
-**Автор:** Михаил Гуляев (`gulaevmihail112`)  
+**Автор:** Михаил Гуляев (`Mikhail9030`)  
 **Преподаватель:** Даниил Корбут  
-**Репозиторий:** [GitVerse / gulaevmihail112](https://gitverse.ru/gulaevmihail112)
+**Репозиторий:** [GitHub / Mikhail9030 / Final_Project_ML_1](https://github.com/Mikhail9030/Final_Project_ML_1)
 
 ---
 
