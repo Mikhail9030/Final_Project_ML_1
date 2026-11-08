@@ -53,5 +53,5 @@
 
 ### 1. Клонирование репозитория
 ```bash
-git clone [https://gitverse.ru/gulaevmihail112/it-service-ticket-classification.git](https://gitverse.ru/gulaevmihail112/it-service-ticket-classification.git)
-cd it-service-ticket-classification
+git clone [https://github.com/Mikhail9030/Final_Project_ML_1.git](https://github.com/Mikhail9030/Final_Project_ML_1.git)
+cd Final_Project_ML_1
