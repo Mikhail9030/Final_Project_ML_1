@@ -10,48 +10,40 @@
 
 ---
 
-## 📌 Описание задачи
-Проект посвящен автоматической классификации входящих обращений пользователей в службу IT-поддержки по 8 тематическим группам (`Access`, `Administrative rights`, `HR Support`, `Hardware`, `Internal Project`, `Miscellaneous`, `Purchase`, `Storage`). 
+## Описание проекта
+Проект посвящен решению задачи многоклассовой классификации обращений пользователей в службу технической поддержки (IT Service Desk). Система автоматически распределяет входящие текстовые тикеты по 8 тематическим категориям (`Hardware`, `HR Support`, `Access`, `Miscellaneous`, `Storage`, `Purchase`, `Internal Project`, `Administrative rights`)[cite: 8].
 
-Цель — реализовать полный цикл NLP (EDA, предобработка, построение пайплайнов Sklearn и нейросетей PyTorch) с трекингом параметров и метрик в **MLflow**.
-
----
-
-## 📊 Описание датасета
-* **Источник:** Kaggle IT Service Ticket Classification Dataset
-* **Объем данных:** 47 837 записей (Train: 38 269; Test: 9 568)
-* **Признаки:**
-  * `Document`: Исходный текст обращения на английском языке.
-  * `Topic_group`: Целевая категория IT-обращения.
-* **Пропуски:** 0 во всех колонках.
+### Датасет
+* **Источник:** Kaggle — *IT Service Ticket Classification Dataset* (`all_tickets_processed_improved_v3.csv`)
+* **Объём:** 47 837 обращений (пропуски отсутствуют)
+* **Длина текстов:** медиана — 26 слов, среднее — 43.6 слова (от 2 до 981 слова)
+* **Разбиение:** стратифицированный сплит 80/20 — **38 269** записей в `Train` и **9 568** записей в `Test`
 
 ---
 
-## 📈 Таблица результатов
+## Результаты экспериментов (MLflow)
 
-| Модель | Векторизация / Архитектура | Accuracy | F1-Macro | F1-Weighted |
+Все модели обучены на едином разбиении данных и залогированы в эксперименте MLflow (`IT_Ticket_Classification_Daniil_Korbut`):
+
+| Модель | Признаки / Параметры | Accuracy | F1-Macro | F1-Weighted |
 | :--- | :--- | :---: | :---: | :---: |
-| **Logistic Regression** | **TF-IDF (10k features, n-grams 1-2)** | **0.8584** | **0.8547** | **0.8584** |
-| PyTorch MLP | TF-IDF (5k features, 3 layers, 5 epochs) | 0.8485 | 0.8526 | 0.8485 |
+| **Logistic Regression** | **TF-IDF (10k features, n-grams 1–2)** | **0.8584** | **0.8547** | **0.8584** |
+| PyTorch MLP | TF-IDF (5k features, 3 layers, 5 epochs) | 0.8493 | 0.8526 | 0.8491 |
 | Random Forest Classifier | TF-IDF (10k features, max_depth=20) | 0.6313 | 0.6043 | 0.6274 |
 
-### Подробный отчет по классам (Logistic Regression):
-| Класс | Precision | Recall | F1-Score | Support |
-| :--- | :---: | :---: | :---: | :---: |
-| **Access** | 0.92 | 0.88 | 0.90 | 1425 |
-| **Administrative rights** | 0.88 | 0.63 | 0.74 | 352 |
-| **HR Support** | 0.86 | 0.87 | 0.87 | 2183 |
-| **Hardware** | 0.80 | 0.90 | 0.84 | 2724 |
-| **Internal Project** | 0.92 | 0.80 | 0.86 | 424 |
-| **Miscellaneous** | 0.84 | 0.82 | 0.83 | 1412 |
-| **Purchase** | 0.98 | 0.86 | 0.92 | 493 |
-| **Storage** | 0.95 | 0.83 | 0.89 | 555 |
+* **Победитель:** `Logistic Regression` в связке с `TfidfVectorizer(ngram_range=(1, 2))` показала наилучшее качество по всем метрикам при минимальном времени обучения и инференса.
+* **Узкое место:** миноритарный класс `Administrative rights` (3.68% выборки, 352 примера в тесте) имеет наименьший `F1-Score = 0.74` из-за дисбаланса классов и пересечения лексики с категорией `Hardware`[cite: 8].
 
 ---
 
-## 🛠 Инструкция по запуску
+## Структура репозитория
+```text
+├── Final_project_1.ipynb    # Основной Jupyter Notebook с полным циклом (Шаги 1–9)
+├── README.md                # Документация проекта и сводка метрик
+├── requirements.txt         # Зависимости проекта
+└── .gitignore               # Исключения для Git (.venv, кэш, крупные датасеты)
 
-### 1. Клонирование репозитория
-```bash
+Клонирование репозитория
+bash
 git clone [https://gitverse.ru/gulaevmihail112/it-service-ticket-classification.git](https://gitverse.ru/gulaevmihail112/it-service-ticket-classification.git)
 cd it-service-ticket-classification
